@@ -14,6 +14,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A11C3574227B5B99006DCF26 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A11C3577227B5BC5006DCF26 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C3669D6A227ADD85009AF64D /* Metal Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metal Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3669D6D227ADD85009AF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3669D6F227ADD85009AF64D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +39,8 @@
 		C3669D61227ADD84009AF64D = {
 			isa = PBXGroup;
 			children = (
+				A11C3577227B5BC5006DCF26 /* LICENSE */,
+				A11C3574227B5B99006DCF26 /* README.md */,
 				C3669D6C227ADD85009AF64D /* Metal Tutorial */,
 				C3669D6B227ADD85009AF64D /* Products */,
 			);
