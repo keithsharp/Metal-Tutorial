@@ -9,7 +9,7 @@ I've created a seperate [document](https://github.com/keithsharp/Metal-Tutorial/
 ## Using the Repository
 Check the repsitory out using:
 ```bash
-git clone https://github.com:keithsharp/Metal-Tutorial.git
+git clone https://github.com/keithsharp/Metal-Tutorial.git
 ```
 The code at the end of each tutorial can then be identifed by a tag, for example `tut001` is the tag for the complete code after [tutorial one](https://www.youtube.com/watch?v=VS8wlS9hF8E).
 
