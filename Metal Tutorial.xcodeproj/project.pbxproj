@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A11C357A2281DFDD006DCF26 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11C35792281DFDD006DCF26 /* Renderer.swift */; };
+		A11C357C2281EEA8006DCF26 /* RawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11C357B2281EEA8006DCF26 /* RawModel.swift */; };
+		A11C35822281F02B006DCF26 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11C35812281F02B006DCF26 /* Loader.swift */; };
+		A11C35842281F787006DCF26 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = A11C35832281F787006DCF26 /* Shaders.metal */; };
 		C3669D6E227ADD85009AF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3669D6D227ADD85009AF64D /* AppDelegate.swift */; };
 		C3669D70227ADD85009AF64D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3669D6F227ADD85009AF64D /* ViewController.swift */; };
 		C3669D72227ADD87009AF64D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3669D71227ADD87009AF64D /* Assets.xcassets */; };
@@ -18,6 +21,11 @@
 		A11C3574227B5B99006DCF26 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A11C3577227B5BC5006DCF26 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A11C35792281DFDD006DCF26 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		A11C357B2281EEA8006DCF26 /* RawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawModel.swift; sourceTree = "<group>"; };
+		A11C357D2281EF8E006DCF26 /* Metal Tutorial-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Metal Tutorial-Bridging-Header.h"; sourceTree = "<group>"; };
+		A11C35802281EFBF006DCF26 /* ShaderDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderDefinitions.h; sourceTree = "<group>"; };
+		A11C35812281F02B006DCF26 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		A11C35832281F787006DCF26 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		C3669D6A227ADD85009AF64D /* Metal Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metal Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3669D6D227ADD85009AF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3669D6F227ADD85009AF64D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +50,10 @@
 			isa = PBXGroup;
 			children = (
 				A11C35792281DFDD006DCF26 /* Renderer.swift */,
+				A11C357B2281EEA8006DCF26 /* RawModel.swift */,
+				A11C35812281F02B006DCF26 /* Loader.swift */,
+				A11C35802281EFBF006DCF26 /* ShaderDefinitions.h */,
+				A11C35832281F787006DCF26 /* Shaders.metal */,
 			);
 			path = "Game Engine";
 			sourceTree = "<group>";
@@ -52,6 +64,7 @@
 				A11C3577227B5BC5006DCF26 /* LICENSE */,
 				A11C3574227B5B99006DCF26 /* README.md */,
 				C3669D6C227ADD85009AF64D /* Metal Tutorial */,
+				A11C357D2281EF8E006DCF26 /* Metal Tutorial-Bridging-Header.h */,
 				C3669D6B227ADD85009AF64D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,6 +123,7 @@
 				TargetAttributes = {
 					C3669D69227ADD85009AF64D = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -148,9 +162,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11C35842281F787006DCF26 /* Shaders.metal in Sources */,
+				A11C357C2281EEA8006DCF26 /* RawModel.swift in Sources */,
 				C3669D70227ADD85009AF64D /* ViewController.swift in Sources */,
 				A11C357A2281DFDD006DCF26 /* Renderer.swift in Sources */,
 				C3669D6E227ADD85009AF64D /* AppDelegate.swift in Sources */,
+				A11C35822281F02B006DCF26 /* Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +304,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Metal Tutorial/Metal_Tutorial.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -298,6 +316,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.passback.Metal-Tutorial";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Metal Tutorial-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -306,6 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Metal Tutorial/Metal_Tutorial.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -317,6 +338,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.passback.Metal-Tutorial";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Metal Tutorial-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

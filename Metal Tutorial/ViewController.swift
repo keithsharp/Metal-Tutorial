@@ -32,6 +32,15 @@ class ViewController: NSViewController {
         }
         renderer = tmpRenderer
         mtkView.delegate = renderer
+
+        let vertices = [Vertex(pos: [-0.5, 0.5, 0]),
+                        Vertex(pos: [-0.5, -0.5, 0]),
+                        Vertex(pos: [0.5, -0.5, 0]),
+                        Vertex(pos: [0.5, -0.5, 0]),
+                        Vertex(pos: [0.5, 0.5, 0]),
+                        Vertex(pos: [-0.5, 0.5, 0])]
+
+        renderer.rawModel = Loader.createRawModelWithDevice(defaultDevice, fromVertices: vertices)
     }
 
 }

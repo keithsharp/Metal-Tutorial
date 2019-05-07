@@ -26,6 +26,17 @@ The combination of NSApplication, NSViewController, and MTKView give us most of 
 
 The `MTKView` equivalent of the `updateDisplay` method is `draw(in view: MTKView)`.  By setting the `renderer` as the `MTKView` delegate in `viewDidLoad` this method is called 60 times a second.  There are options to configure this futher - see the [documentation](https://developer.apple.com/documentation/metalkit/mtkview).  In future tutorials I may restruture much of this code to move to an explicit game loop and a manual invocation of `draw`.
 
+### Tutorial 2: VAOs and VBOs
+#### Links
++ [Tutorial Video](https://www.youtube.com/watch?v=WMiggUPst-Q)
++ [Java Implementation](https://github.com/TheThinMatrix/OpenGL-Tutorial-2)
++ [Getting started with Metal tutorial](https://donaldpinckney.com/metal/2018/07/05/metal-intro-1.html)
+
+#### Notes
+There's not an exact equivalent of OpenGL VAOs and VBOs in Metal.  In Metal the data we want to pass to the GPU is stored in `MTLBuffer` objects and we describe the structure of the data when we make the buffer.  One of the nice features of Metal is that we can create a header file that is shared between our Swift code and our shader code reducing the need to duplicate code which must be kept in sync.  This is done by creating a bridging header and then included our `ShaderDefinitions.h` header file in the bridging header which makes any types available in both Swift and the Metal Shading Language.
+
+I created a `Vertex` struct that is shared between the shaders and the Swift code, you could simplify this by just passing arrays of floats.  In Metal you need to make a draw call for each primitive (triangles in this example), hence the loop in `draw`.  The `draw` function is also a bit overloaded as it's acting as the renderer and the game loop - the code needs restructured to seperate these functions.
+
 ## Contact and Licence
 This code was written by Keith Sharp [kms@passback.co.uk](mailto:kms@passback.co.uk).  You can also follow me on Twitter [@KeithSharp](https://twitter.com/KeithSharp).
 
