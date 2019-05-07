@@ -17,11 +17,14 @@ The code at the end of each tutorial can then be identifed by a tag, for example
 
 ### Tutorial 1: The Display
 #### Links
-+ [Tutorial Video]()
++ [Tutorial Video](https://www.youtube.com/watch?v=VS8wlS9hF8E)
 + [Java Implementation](https://github.com/TheThinMatrix/OpenGL-Tutorial-1)
++ [Getting started with Metal tutorial](https://donaldpinckney.com/metal/2018/07/05/metal-intro-1.html)
 
 #### Notes
-This will contain a description of what's different about the Swift and Metal implementation.
+The combination of NSApplication, NSViewController, and MTKView give us most of the funtionality that needs to be written in the Java example.  The size and position of the window and view are configured in the storyboard, I also changed the type of the view to `MTKView`.  I created a group within Xcode called `Game Engine` where I put all of the engine related files, similar to the `renderEngine` folder in the Java example.
+
+The `MTKView` equivalent of the `updateDisplay` method is `draw(in view: MTKView)`.  By setting the `renderer` as the `MTKView` delegate in `viewDidLoad` this method is called 60 times a second.  There are options to configure this futher - see the [documentation](https://developer.apple.com/documentation/metalkit/mtkview).  In future tutorials I may restruture much of this code to move to an explicit game loop and a manual invocation of `draw`.
 
 ## Contact and Licence
 This code was written by Keith Sharp [kms@passback.co.uk](mailto:kms@passback.co.uk).  You can also follow me on Twitter [@KeithSharp](https://twitter.com/KeithSharp).

@@ -7,21 +7,31 @@
 //
 
 import Cocoa
+import MetalKit
 
 class ViewController: NSViewController {
 
+    var mtkView: MTKView!
+    var renderer: Renderer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
+        guard let tmpMtkView = self.view as? MTKView else {
+            fatalError("Could not downcast view to MTKView")
         }
+        mtkView = tmpMtkView
+        
+        guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
+            fatalError("Could not create default Metal device")
+        }
+        mtkView.device = defaultDevice
+        
+        guard let tmpRenderer = Renderer(mtkView: self.mtkView) else {
+            fatalError("Could not initialise Renderer class")
+        }
+        renderer = tmpRenderer
+        mtkView.delegate = renderer
     }
-
 
 }
-
