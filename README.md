@@ -11,7 +11,7 @@ Check the repsitory out using:
 ```bash
 git clone https://github.com/keithsharp/Metal-Tutorial.git
 ```
-The code at the end of each tutorial can then be identifed by a tag, for example `tut001` is the tag for the complete code after [tutorial one](https://www.youtube.com/watch?v=VS8wlS9hF8E).
+The code at the end of each tutorial can then be identifed by a tag, for example `001` is the tag for the complete code after [tutorial one](https://www.youtube.com/watch?v=VS8wlS9hF8E).
 
 ## The Tutorials
 
@@ -36,6 +36,20 @@ The `MTKView` equivalent of the `updateDisplay` method is `draw(in view: MTKView
 There's not an exact equivalent of OpenGL VAOs and VBOs in Metal.  In Metal the data we want to pass to the GPU is stored in `MTLBuffer` objects and we describe the structure of the data when we make the buffer.  One of the nice features of Metal is that we can create a header file that is shared between our Swift code and our shader code reducing the need to duplicate code which must be kept in sync.  This is done by creating a bridging header and then included our `ShaderDefinitions.h` header file in the bridging header which makes any types available in both Swift and the Metal Shading Language.
 
 I created a `Vertex` struct that is shared between the shaders and the Swift code, you could simplify this by just passing arrays of floats.  In Metal you need to make a draw call for each primitive (triangles in this example), hence the loop in `draw`.  The `draw` function is also a bit overloaded as it's acting as the renderer and the game loop - the code needs restructured to seperate these functions.
+
+I was getting confused by the winding order of Metal (it defaults to clockwise which is different to OpenGL), now that I understand how it works I've been able to simplify the `draw` method in the renderer.  I've committed this with tag `002.1`.
+
+### Tutorial 3: Rendering wth Index Buffers
+#### Links
++ [Tutorial Video](https://www.youtube.com/watch?v=z2yFlvkBbmk)
++ [Java Implementation](https://github.com/TheThinMatrix/OpenGL-Tutorial-3)
+
+#### Notes
+The concepts and code for rendering with index buffers match almost completely between Metal and OpenGL.
++ `createModelWithDevice` in the loader takes an extra parameter for the indices array.
++ The `RawModel` has a property for the index buffer and the count property now stores the number of indices.
++ The `draw` method in the renderer uses the `drawIndexedPrimitives` method to do the drawing.
+
 
 ## Contact and Licence
 This code was written by Keith Sharp [kms@passback.co.uk](mailto:kms@passback.co.uk).  You can also follow me on Twitter [@KeithSharp](https://twitter.com/KeithSharp).

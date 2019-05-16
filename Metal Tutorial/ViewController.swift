@@ -35,12 +35,12 @@ class ViewController: NSViewController {
 
         let vertices = [Vertex(pos: [-0.5, 0.5, 0]),
                         Vertex(pos: [0.5, -0.5, 0]),
-                        Vertex(pos: [-0.5, -0.5, 0]),                        
-                        Vertex(pos: [0.5, -0.5, 0]),
-                        Vertex(pos: [0.5, 0.5, 0]),
-                        Vertex(pos: [-0.5, 0.5, 0])]
+                        Vertex(pos: [-0.5, -0.5, 0]),
+                        Vertex(pos: [0.5, 0.5, 0])]
+        
+        let indices: [uint16] = [0, 1, 2, 0, 3, 1]
 
-        renderer.rawModel = Loader.createRawModelWithDevice(defaultDevice, fromVertices: vertices)
+        renderer.rawModel = Loader.createRawModelWithDevice(defaultDevice, fromVertices: vertices, andIndices: indices)
     }
 
 }

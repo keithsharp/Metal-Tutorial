@@ -11,5 +11,6 @@ import Metal
 struct RawModel {
     let vertexBuffer: MTLBuffer
     let bufferIndex: Int
+    let indexBuffer: MTLBuffer
     let count: Int
 }

@@ -49,14 +49,20 @@ extension Renderer: MTKViewDelegate {
     func draw(in view: MTKView) {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
+        guard let model = rawModel else { return }
         
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 0, 0, 1)
         
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
         
-        guard let vertexCount = rawModel?.count else { return }
+        renderEncoder.setRenderPipelineState(pipelineState)
+        renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: model.bufferIndex)
 
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
+        renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                            indexCount: model.count,
+                                            indexType: .uint16,
+                                            indexBuffer: model.indexBuffer,
+                                            indexBufferOffset: 0)
         
         renderEncoder.endEncoding()
         commandBuffer.present(view.currentDrawable!)
