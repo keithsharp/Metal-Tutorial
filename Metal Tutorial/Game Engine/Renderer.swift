@@ -55,14 +55,8 @@ extension Renderer: MTKViewDelegate {
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
         
         guard let vertexCount = rawModel?.count else { return }
-        let primitiveCount = vertexCount / 3
-        
-        renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(rawModel?.vertexBuffer, offset: 0, index: (rawModel?.bufferIndex)!)
-        
-        for i in 0..<primitiveCount {
-            renderEncoder.drawPrimitives(type: .triangle, vertexStart: (i * 3), vertexCount: 3)
-        }
+
+        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
         
         renderEncoder.endEncoding()
         commandBuffer.present(view.currentDrawable!)

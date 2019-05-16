@@ -34,8 +34,8 @@ class ViewController: NSViewController {
         mtkView.delegate = renderer
 
         let vertices = [Vertex(pos: [-0.5, 0.5, 0]),
-                        Vertex(pos: [-0.5, -0.5, 0]),
                         Vertex(pos: [0.5, -0.5, 0]),
+                        Vertex(pos: [-0.5, -0.5, 0]),                        
                         Vertex(pos: [0.5, -0.5, 0]),
                         Vertex(pos: [0.5, 0.5, 0]),
                         Vertex(pos: [-0.5, 0.5, 0])]
