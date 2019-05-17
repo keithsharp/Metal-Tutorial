@@ -50,6 +50,13 @@ The concepts and code for rendering with index buffers match almost completely b
 + The `RawModel` has a property for the index buffer and the count property now stores the number of indices.
 + The `draw` method in the renderer uses the `drawIndexedPrimitives` method to do the drawing.
 
+### Tutorial 4: Introduction to Shaders
+#### Links
++ [Tutorial Video](https://www.youtube.com/watch?v=AyNZG_mqGVE)
++ [Metal Shading Language](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf)
+
+#### Notes
+There's no code changes as this tutorial provides background on how programmable graphics pipelines and shaders work.  Most of the material applies directly to Metal which uses the Metal Shading Language for coding shaders rather than GLSL.
 
 ## Contact and Licence
 This code was written by Keith Sharp [kms@passback.co.uk](mailto:kms@passback.co.uk).  You can also follow me on Twitter [@KeithSharp](https://twitter.com/KeithSharp).
