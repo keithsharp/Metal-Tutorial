@@ -13,6 +13,7 @@
 
 struct Vertex {
     vector_float3 pos;
+    vector_float2 uv;
 };
 
 #endif /* ShaderDefinitions_h */

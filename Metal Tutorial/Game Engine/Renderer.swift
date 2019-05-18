@@ -14,7 +14,7 @@ class Renderer: NSObject {
     let commandQueue: MTLCommandQueue
     let pipelineState: MTLRenderPipelineState
     
-    var rawModel: RawModel?
+    var texturedModel: TexturedModel?
     
     init?(mtkView: MTKView) {
         device = mtkView.device!
@@ -49,19 +49,20 @@ extension Renderer: MTKViewDelegate {
     func draw(in view: MTKView) {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
-        guard let model = rawModel else { return }
+        guard let model = texturedModel else { return }
         
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 0, 0, 1)
         
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
         
         renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: model.bufferIndex)
-
+        
+        renderEncoder.setFragmentTexture(model.texture, index: 0)
+        renderEncoder.setVertexBuffer(model.rawModel.vertexBuffer, offset: 0, index: model.rawModel.bufferIndex)
         renderEncoder.drawIndexedPrimitives(type: .triangle,
-                                            indexCount: model.count,
+                                            indexCount: model.rawModel.count,
                                             indexType: .uint16,
-                                            indexBuffer: model.indexBuffer,
+                                            indexBuffer: model.rawModel.indexBuffer,
                                             indexBufferOffset: 0)
         
         renderEncoder.endEncoding()

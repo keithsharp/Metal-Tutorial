@@ -73,6 +73,18 @@ There's no code changes as this tutorial provides background on how programmable
 + The `pipelineState` object is then attached to the `renderEncoder` in the `Renderer`'s `draw(in view: MTKView)` method when we are actually doing the drawing.
 + As the tutorials progress we will probably need to replace this method and create multiple `MTLRenderPipelineState` objects for render passes that need different shaders.
 
+### Tutorial 6: Texturing
+#### Links
++ [Tutorial Video](https://www.youtube.com/watch?v=SPt-aogu72A)
+
+#### Notes
++ In `Loader` I created a new static method called `createTextureWithDevice` which uses MetalKit to load the texture from the main bundle.  Note that there's no error handling here, I'm relying on the URL creation in `viewDidLoad` to catch missing textures and problems with creating the texture will go undetected!
++ Like in the Java code, I have also created a new group in Xcode to hold my models.  The `TexturedModel` struct is similar to the Java version, but I'm using an `MTLTexture` rather than my own wrapper class.
++ In `ShaderDefinitions.h` I modified the struct to hold the UV coordinates for the Vertex in a `float2`.  This allows me to add UV coordinates to my vertices in `viewDidLoad`.
++ In the `draw` method the texture is passed to the GPU using the `setFragmentTexture` method on the `renderCommandEncoder`.
++ The changes to the shaders are similar to the OpenGL versions.  The `VertexOut` struct is modified to pass the UV coordinates from the vertex shader to the fragement shader.  In the fragment shader the function parameters are updated to accept the texture.
++ The texture I used is in the `Resources` group - please don't judge me on my art skills :-)
+
 ## Contact and Licence
 This code was written by Keith Sharp [kms@passback.co.uk](mailto:kms@passback.co.uk).  You can also follow me on Twitter [@KeithSharp](https://twitter.com/KeithSharp).
 

@@ -33,14 +33,22 @@ class ViewController: NSViewController {
         renderer = tmpRenderer
         mtkView.delegate = renderer
 
-        let vertices = [Vertex(pos: [-0.5, 0.5, 0]),
-                        Vertex(pos: [0.5, -0.5, 0]),
-                        Vertex(pos: [-0.5, -0.5, 0]),
-                        Vertex(pos: [0.5, 0.5, 0])]
+        let vertices = [Vertex(pos: [-0.5, 0.5, 0], uv: [0, 0]),
+                        Vertex(pos: [0.5, -0.5, 0], uv: [1, 1]),
+                        Vertex(pos: [-0.5, -0.5, 0], uv: [0, 1]),
+                        Vertex(pos: [0.5, 0.5, 0], uv: [1, 0])]
         
         let indices: [uint16] = [0, 1, 2, 0, 3, 1]
 
-        renderer.rawModel = Loader.createRawModelWithDevice(defaultDevice, fromVertices: vertices, andIndices: indices)
+        let model = Loader.createRawModelWithDevice(defaultDevice, fromVertices: vertices, andIndices: indices)
+        
+        guard let url = Bundle.main.url(forResource: "texture", withExtension: "png") else {
+            fatalError("Could not load texture from main bundle.")
+        }
+        let texture = Loader.createTextureWithDevice(defaultDevice, fromURL: url)
+        renderer.texturedModel = TexturedModel(rawModel: model, texture: texture)
+        
+        
     }
 
 }

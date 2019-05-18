@@ -6,7 +6,7 @@
 //  Copyright © 2019 Passback Systems. All rights reserved.
 //
 
-import Metal
+import MetalKit
 
 class Loader {
     
@@ -22,5 +22,15 @@ class Loader {
         let rawModel = RawModel(vertexBuffer: vertexBuffer, bufferIndex: bufferIndex, indexBuffer: indexBuffer, count: indices.count)
         
         return rawModel
+    }
+    
+    static func createTextureWithDevice(_ device: MTLDevice, fromURL url: URL) -> MTLTexture {
+
+        let textureLoader = MTKTextureLoader(device: device)
+        
+        // TODO: Add some error handling
+        let texture = try! textureLoader.newTexture(URL: url, options: nil)
+        
+        return texture
     }
 }
