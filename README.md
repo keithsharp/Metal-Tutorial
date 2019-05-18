@@ -58,6 +58,21 @@ The concepts and code for rendering with index buffers match almost completely b
 #### Notes
 There's no code changes as this tutorial provides background on how programmable graphics pipelines and shaders work.  Most of the material applies directly to Metal which uses the Metal Shading Language for coding shaders rather than GLSL.
 
+### Tutorial 5: Coloring using Shaders
+#### Links
++ [Tutorial Video](https://www.youtube.com/watch?v=4w7lNF8dnYw)
++ [Java Implementation](https://www.dropbox.com/sh/qtfhwru70y9sg8b/AAAweVar09wgu9DmmSO8yAf8a?dl=0)
++ [Getting started with Metal tutorial](https://donaldpinckney.com/metal/2018/07/05/metal-intro-1.html)
+
+#### Notes
++ We've needed a shaders file right from the start so there's already been a file called `Shaders.metal` in the `Game Engine` group.  Metal shader development is a first class citizen of Xcode, so it just works!
++ The equivalent of the `gl_Position` call in metal is where we use the `[[ position ]]` attribute qualifier in the `VertexOut` struct definition.
++ We use `half3` types in the fragment shader as a small optimisation, it saves a small amout of memory.  Otherwise the fragment shader is the same.
++ One of the advantages of Metal is that shaders are compiled when you buidl your application in Xcode, though you can build them at runtime as well.  This means that we don't have to create the equivalent of `ShaderProgram.java`.
++ Metal uses a `MTLRenderPipelineState` to configure the shaders and load them onto the GPU.  In the `Renderer` class there is a class method called `createRenderPipeline` which creates the `MTLRenderPipelineState` object from a `MTLRenderPipelineDescriptor`.
++ The `pipelineState` object is then attached to the `renderEncoder` in the `Renderer`'s `draw(in view: MTKView)` method when we are actually doing the drawing.
++ As the tutorials progress we will probably need to replace this method and create multiple `MTLRenderPipelineState` objects for render passes that need different shaders.
+
 ## Contact and Licence
 This code was written by Keith Sharp [kms@passback.co.uk](mailto:kms@passback.co.uk).  You can also follow me on Twitter [@KeithSharp](https://twitter.com/KeithSharp).
 
