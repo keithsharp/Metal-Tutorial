@@ -85,6 +85,20 @@ There's no code changes as this tutorial provides background on how programmable
 + The changes to the shaders are similar to the OpenGL versions.  The `VertexOut` struct is modified to pass the UV coordinates from the vertex shader to the fragement shader.  In the fragment shader the function parameters are updated to accept the texture.
 + The texture I used is in the `Resources` group - please don't judge me on my art skills :-)
 
+### Tutorial 7: Matrices and Uniform Variables
+#### Links
++ [Tutorial Video](https://www.youtube.com/watch?v=oc8Yl4ZruCA)
++ [Metal 3D Graphics Part 2: Animated Uniform Data with Synchronization] (https://donaldpinckney.com/metal/2018/07/27/metal-intro-2.html)
++ [Simple Matrix Maths](https://www.mathsisfun.com/algebra/matrix-introduction.html)
++ [Transformation Matrix](https://en.wikipedia.org/wiki/Transformation_matrix)
++ [Euler rotations to matrix conversion](http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToEuler/)
++ [More Matrices](http://www.opengl-tutorial.org/beginners-tutorials/tutorial-3-matrices/)
+
+#### Notes
++ Using Swift's extenstions feature I have created a new static method on `float4x4` called `createTransformationMatrix`.  This does the same as the Java version, but we don't have convenience methods so we have to do the matrix work by hand.  I hope my maths is correct as I've not tested this yet. 
++ I updated `ShaderDefinitions.h` and `Shaders.metal` to reference a new type called `Uniforms`  because of the way Swift and Metal Shading Language interact we can use this type to pass uniform values to the GPU.
++ In the `Render` I created a new property called `uniforms` which I pass to the shaders in `draw` using the `setVertexBytes` and `setFragmentBytes` methods of the `renderCommandEncoder`.
+
 ## Contact and Licence
 This code was written by Keith Sharp [kms@passback.co.uk](mailto:kms@passback.co.uk).  You can also follow me on Twitter [@KeithSharp](https://twitter.com/KeithSharp).
 

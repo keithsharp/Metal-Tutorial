@@ -15,7 +15,9 @@ struct VertexOut {
     float2 uv;
 };
 
-vertex VertexOut vertex_main(const device Vertex *vertexArray [[buffer(0)]], unsigned int vid [[vertex_id]])
+vertex VertexOut vertex_main(const device Vertex *vertexArray [[buffer(0)]],
+                             unsigned int vid [[vertex_id]],
+                             constant Uniforms &uniforms [[buffer(1)]])
 {
     Vertex in = vertexArray[vid];
     
@@ -26,7 +28,9 @@ vertex VertexOut vertex_main(const device Vertex *vertexArray [[buffer(0)]], uns
     return out;
 }
 
-fragment float4 fragment_main(VertexOut in [[stage_in]], texture2d<float> myTexture [[texture(0)]])
+fragment float4 fragment_main(VertexOut in [[stage_in]],
+                              texture2d<float> myTexture [[texture(0)]],
+                              constant Uniforms &uniforms [[buffer(1)]])
 {
     constexpr sampler textureSampler;
     float3 colour = myTexture.sample(textureSampler, in.uv).rgb;

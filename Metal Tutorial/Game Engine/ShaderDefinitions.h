@@ -16,4 +16,8 @@ struct Vertex {
     vector_float2 uv;
 };
 
+struct Uniforms {
+    matrix_float4x4 transformationMatrix;
+};
+
 #endif /* ShaderDefinitions_h */

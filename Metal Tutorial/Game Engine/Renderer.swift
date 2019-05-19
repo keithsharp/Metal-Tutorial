@@ -15,6 +15,7 @@ class Renderer: NSObject {
     let pipelineState: MTLRenderPipelineState
     
     var texturedModel: TexturedModel?
+    var uniforms = Uniforms()
     
     init?(mtkView: MTKView) {
         device = mtkView.device!
@@ -59,6 +60,10 @@ extension Renderer: MTKViewDelegate {
         
         renderEncoder.setFragmentTexture(model.texture, index: 0)
         renderEncoder.setVertexBuffer(model.rawModel.vertexBuffer, offset: 0, index: model.rawModel.bufferIndex)
+        
+        renderEncoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
+        renderEncoder.setFragmentBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
+        
         renderEncoder.drawIndexedPrimitives(type: .triangle,
                                             indexCount: model.rawModel.count,
                                             indexType: .uint16,
